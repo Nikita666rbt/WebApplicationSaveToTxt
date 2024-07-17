@@ -1,0 +1,59 @@
+﻿@model WebApplication5.Models.Users
+@{
+    Layout = null;
+    ViewBag.Title = "Пользователи";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2>Добавление пользователя</h2>
+        @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+        {
+            <div>
+                <label for="FullName">ФИО:</label>
+                @Html.TextBoxFor(m => m.FullName)
+                @Html.ValidationMessageFor(m => m.FullName)
+            </div>
+            <div>
+                <label for="Address">Адрес:</label>
+                @Html.TextBoxFor(m => m.Address)
+                @Html.ValidationMessageFor(m => m.Address)
+            </div>
+            <div>
+                <label for="Phone">Телефон:</label>
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </div>
+            <div>
+                <label for="Email">Email:</label>
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div>
+                <button type="submit">Сохранить</button>
+            </div>
+        }
+
+        @if (TempData["Message"] != null)
+        {
+            <p>@TempData["Message"]</p>
+        }
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <div>
+                <button name="Clear" type="submit">Очистить</button>
+            </div>
+        }
+
+    </div>
+</body>
+</html>
